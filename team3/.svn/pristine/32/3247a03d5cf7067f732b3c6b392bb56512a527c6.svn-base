@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="site.awsomekingmoon.mapper.MemberMapper">
+  	<!-- 별칭붙인 맴버VO -->
+  	<resultMap type="member" id="memberMap">
+  		<id property="id" column="id"/>
+  		<result property="id" column="id"/>
+  		<result property="pw" column="pw"/>
+  		<result property="email" column="email"/>
+  		<result property="name" column="name"/>
+  		<result property="nickname" column="nickname"/>
+  		<result property="phone" column="phone"/>
+  		<result property="address" column="address"/>
+  		<result property="longitude" column="longitude"/>
+  		<result property="latitude" column="latitude"/>
+  		<result property="regDate" column="regDate"/>
+  		<result property="outDate" column="outDate"/>
+  		<result property="enabled" column="enabled"/>
+  		<result property="status" column="status"/>
+  		<collection property="auths" resultMap="authMap"/>
+  	</resultMap>
+  	
+  	<resultMap type="auth" id="authMap">
+  		<result property="id" column="id"/>
+  		<result property="auth" column="auth"/>
+  	</resultMap>
+  	
+  	<sql id="memberCri">
+  	<trim prefix="WHERE">
+			<foreach collection="typeArr" item="type">
+					<choose>
+						<when test="type == 'I'.toString()">
+							ID LIKE '%'||#{keyword}||'%'						
+						</when>
+						<when test="type == 'E'.toString()">
+							EMAIL LIKE '%${keyword}%'						
+						</when>
+						<when test="type == 'N'.toString()">
+							NAME LIKE '%${keyword}%'						
+						</when>
+						<when test="type == 'P'.toString()">
+							PHONE LIKE '%${keyword}%'						
+						</when>
+					</choose>
+			</foreach>
+		</trim>
+	</sql>
+  
+  
+  	<insert id="insertMember">
+  	INSERT INTO MEMBER(ID, PW, EMAIL, NAME, NICKNAME, PHONE, STATUS) VALUES (#{id}, #{pw}, #{email}, #{name}, #{nickname}, #{phone}, 1)
+  	</insert>
+  	
+  	<insert id="insertAuth">
+  	INSERT INTO AUTH VALUES (#{id}, #{auth})
+  	</insert>
+  	
+  	<insert id="insertAuthPhone">
+  	INSERT INTO AUTH_PHONE (PHONE, AUTHKEY) VALUES (#{phone}, #{authKey})
+  	</insert>
+  	
+  	<select id="confirmAuth" resultType="int">
+  	SELECT 1
+  	FROM AUTH_PHONE
+  	WHERE PHONE = #{phone} AND AUTHKEY = #{authKey} AND EXP - SYSDATE > 0
+  	</select>
+  	
+  	
+  	
+  	<select id="read" resultMap="memberMap">
+  	SELECT * 
+	FROM MEMBER
+	LEFT JOIN AUTH
+	USING(ID)
+	WHERE ID = #{id}
+  	</select>
+  	
+  	<select id="memberList" resultType="member">
+  	SELECT ID, NICKNAME, NAME, EMAIL, REGDATE, STATUS FROM MEMBER
+  	</select>
+  	
+  	<select id="memberListWithPaging" resultType="member">
+		SELECT ID, NICKNAME, NAME, EMAIL, REGDATE, STATUS
+		FROM
+		(
+		    SELECT
+		    /*+ INDEX_DESC(MEMBER)*/
+		    ROWNUM RN, ID, NICKNAME, NAME, EMAIL, REGDATE, STATUS
+		    FROM MEMBER
+		    WHERE ROWNUM &lt;= #{pageNum} * #{amount}
+		)
+		WHERE RN > (#{pageNum}-1) * #{amount}
+		ORDER BY ID
+	</select>
+	
+	<select id="getMemberCount" resultType="int">
+		SELECT COUNT(*) FROM MEMBER 
+		<include refid="memberCri"/>
+	</select>
+	
+	<update id="modifyChild">
+		UPDATE BOARD SET
+		NICKNAME = #{nickname}
+		WHERE WRITER = #{id} 
+	</update>
+	
+	<update id="modify">
+		UPDATE MEMBER SET
+		NAME = #{name}
+		,NICKNAME = #{nickname}
+		,EMAIL = #{email}
+		,PHONE = #{phone}
+		WHERE ID = #{id} 
+	</update>
+	
+	
+  	
+  </mapper>

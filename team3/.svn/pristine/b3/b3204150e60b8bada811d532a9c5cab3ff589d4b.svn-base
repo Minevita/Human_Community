@@ -1,0 +1,43 @@
+package site.awsomekingmoon.security;
+
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.stereotype.Component;
+
+import lombok.extern.log4j.Log4j;
+
+/**
+ * @author 박영준
+ * CustomLoginSuccessHandler
+ */
+@Log4j
+@Component
+public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
+	/** onAuthenticationSuccess 사용자가 성공적으로 인증되면 호출*/
+	@Override
+	public void onAuthenticationSuccess(HttpServletRequest req, HttpServletResponse resp, Authentication auth)
+			throws IOException, ServletException {
+		log.warn("login success");
+		
+		String url = req.getParameter("url");
+		req.getHeader("");
+		
+		if(url == null) {
+			// referer 사용
+			String referer = req.getParameter("referer");
+			log.warn(referer);
+		}
+		else {
+			// url 사용
+		}
+	}
+	
+}

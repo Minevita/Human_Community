@@ -1,0 +1,36 @@
+package site.awsomekingmoon.domain;
+
+import java.util.Date;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * @author 이창연
+ * 2021.10.25
+ * 강좌게시판 관련 필드 생성
+ */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class LectureVO {
+	/** 강좌 번호 */
+	Long lno;
+	/** 강좌 순번 */
+	Long cno;
+	/** 강사 이름 */
+	String writer;
+	/** 강좌 이름 */
+	String title;
+	/** 강좌 소개 */
+	String content;
+	/** 강좌 등록일 */
+	Date regDate;
+	/** 강좌 수정일 */
+	Date updateDate;
+	/** 강좌 가격 */
+	int price;
+	/** 강좌 평점 */
+	double grade;
+}

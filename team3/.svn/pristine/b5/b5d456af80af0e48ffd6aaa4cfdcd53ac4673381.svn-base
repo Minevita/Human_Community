@@ -1,0 +1,36 @@
+package site.awsomekingmoon.mapper;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+import site.awsomekingmoon.domain.MemberVo;
+
+
+/**
+ * @author 박영준
+ * MemberMapperTests 회원 조회 테스트
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class MemberMapperTests {
+	@Autowired @Setter
+	private MemberMapper memberMapper;
+	
+	@Test
+	public void testRead() {
+		MemberVo vo = memberMapper.read("user1");
+		MemberVo vo1 = memberMapper.read("member7");
+		MemberVo vo2 = memberMapper.read("admin9");
+		log.info(vo);
+		log.info(vo1);
+		log.info(vo2);
+		vo.getAuths().forEach(log::info);
+	}
+}
+

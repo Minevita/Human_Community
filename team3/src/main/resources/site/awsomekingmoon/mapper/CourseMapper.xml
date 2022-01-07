@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.awsomekingmoon.mapper.CourseMapper">
+	
+	<insert id="insert">
+		INSERT INTO L_COURSE(CNO, URL) 
+		VALUES (SEQ_LECTURE_LNO.NEXTVAL, #{cno}, #{url})
+	</insert>
+	
+	<insert id="insertSelectKey">
+	 <selectKey order="BEFORE" keyProperty="cno" resultType="long">
+	 	SELECT SEQ_LECTURE_LNO.NEXTVAL FROM DUAL
+	 </selectKey>
+	 	INSERT INTO L_COURSE(CNO, URL)
+		VALUES (#{cno}, #{url})
+	</insert>
+	
+	<update id="update">
+		UPDATE L_COURSE SET
+		URL = #{url}
+		WHERE CNO = #{cno} 
+	</update>
+	
+	<delete id="delete">
+		DELETE L_COURSE WHERE CNO = #{cno}
+	</delete>
+	
+	<delete id="deleteAll">
+		DELETE L_COURSE WHERE LNO = #{lno}
+	</delete>
+	
+	<select id="read" resultType="course">
+		SELECT * FROM L_COURSE WHERE CNO = #{cno}
+	</select>
+	
+	<select id="findByLno" resultType="course">
+	SELECT * FROM L_COURSE WHERE LNO = #{lno}
+	</select>
+	
+</mapper>

@@ -1,0 +1,4 @@
+t.username=TEAMPROJECT
+t.password=TEAMPROJECT
+driver=net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+url=jdbc:log4jdbc:oracle:thin:@15.165.203.181:1521:xe

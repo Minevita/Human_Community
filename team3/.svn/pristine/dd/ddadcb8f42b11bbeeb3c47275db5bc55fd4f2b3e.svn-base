@@ -1,0 +1,254 @@
+@charset "UTF-8";
+
+
+/* --------------- board list --------------- */
+@media screen and (min-width:1200px) {
+	.board_list {
+	  position: absolute; left: 50%; top: 50%; 
+	  transform: translate(-50%, -50%); text-align: center;
+	}
+	.board_list .boardtable th:nth-child(1), th:nth-child(4), th:nth-child(5) {
+		max-width: 80px; 
+		min-width: 80px;
+	}		
+	.board_list .boardtable th:nth-child(3), th:nth-child(6) {
+		max-width: 140px; 
+		min-width: 140px;
+	}	
+	.board_list .boardtable td:nth-child(1), td:nth-child(4), td:nth-child(5) {
+		max-width: 80px; 
+		min-width: 80px;
+	}		
+	.board_list .boardtable td:nth-child(3), td:nth-child(6) {
+		max-width: 140px; 
+		min-width: 140px;
+	}	
+	.board_list .boardtable td:nth-child(2) {
+		max-width: none;
+	}
+}
+.board_list .card {
+	background-color:transparent;
+}
+.board_list .boardtable {
+  width:100%;
+  text-align:center;
+}
+.board_list form div{
+  text-align:left;
+}
+.board_list .boardtable th { 
+	 height:28px; 
+	 border-top:2px solid #82C0E4; 
+	 background-color:#3b4890; 
+	 color: #fff;
+	 border-bottom:2px solid #EAEAEA; 
+	 text-align:center;
+}
+.board_list .boardtable td, .table th {
+  padding:10px 20px;
+  border-top:1px solid #ccc;
+  word-break:break-all
+}
+
+.board_list .boardtable td:nth-child(2) {
+	text-align:left;
+}
+
+
+.board_list .boardtable--min {
+  min-width:700px;
+  cellspacing=0;
+  cellpadding=0; 
+  width=100%;
+  cellspacing=0;
+}
+
+
+.board_list .continer{
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	}
+	
+.board_list .card{
+	width:80%;
+	text-align:center;
+}
+
+.board_list .dataTables_length{
+	text-align:left;
+}
+
+
+/* 너비가 768px 이하일 때 */
+@media screen and (max-width:768px) {
+	 .board_list #dataTable_filter {
+	   float: left;
+	   width: 312px;
+	   margin: 4px 0 0 4px;
+	   
+	}
+}
+/* list 768px end */
+
+/* 너비가 560px 이하일 때 */
+@media screen and (max-width:560px) {
+	.board_list .col-sm-12 #dataTable_filter {
+	 	display: inline;
+		 float: left;
+		 width: 150px;
+		 margin: 4px 0 0 4px;
+	   
+	}
+/* 너비가 560px 이하일 때 우측 사이드바를 없앰 */
+	.board_list .col-sm-12 .boardtable {
+	  width:100%;
+	  text-align:center;
+	}
+}
+/* list 560px end */
+
+/* --------------- board paging --------------- */
+
+.board_list .paging{
+	width:100%;
+	position:relative;
+	margin-top:18px;
+	text-align:center;
+	line-height:20px
+	}
+.board_list .paging .dataTables_paginate{
+	display: inline-block;
+	}
+	
+	
+/* --------------- board get --------------- */
+
+
+.board_get .form-control {
+	background-color: transparent;
+}
+
+.board_get .container-fluid{
+	width:80%;
+	text-align:center;
+}
+
+.board_get .container-fluid #bno, #regDate, #replyCnt, #nickname {
+	text-align: left;
+	border:none;
+	border-right:0px; 
+	border-top:0px; 
+	boder-left:0px; 
+	boder-bottom:0px;
+
+}
+
+/* 너비가 768px 이하일 때 */
+@media screen and (max-width:768px) {
+	 .board_get #dataTable_filter {
+	   float: left;
+	   width: 312px;
+	   margin: 4px 0 0 4px;
+	   
+	}
+}
+/* 768px end */
+
+/* 너비가 560px 이하일 때 */
+@media screen and (max-width:560px) {
+	.board_get .col-sm-12 #dataTable_filter {
+	 	display: inline;
+		 float: left;
+		 width: 150px;
+		 margin: 4px 0 0 4px;
+	   
+	}
+/* 너비가 560px 이하일 때 우측 사이드바를 없앰 */
+	.board_get .col-sm-12 .boardtable {
+	  width:100%;
+	  text-align:center;
+	}
+}
+/* 560px end */
+
+/* --------------- board register --------------- */
+
+
+.board_register .container-fluid{
+	width:80%;
+	text-align:center;
+}
+
+/* 너비가 768px 이하일 때 */
+@media screen and (max-width:768px) {
+	 .board_register #dataTable_filter {
+	   float: left;
+	   width: 312px;
+	   margin: 4px 0 0 4px;
+	   
+	}
+}
+/* 768px end */
+
+/* 너비가 560px 이하일 때 */
+@media screen and (max-width:560px) {
+	.board_register .col-sm-12 #dataTable_filter {
+	 	display: inline;
+		 float: left;
+		 width: 150px;
+		 margin: 4px 0 0 4px;
+	   
+	}
+/* 너비가 560px 이하일 때 우측 사이드바를 없앰 */
+	.board_register .col-sm-12 .boardtable {
+	  width:100%;
+	  text-align:center;
+	}
+}
+/* 560px end */
+
+/* --------------- board modify --------------- */
+
+.board_modify .container-fluid{
+	width:80%;
+	text-align:center;
+}
+
+/* 너비가 768px 이하일 때 */
+@media screen and (max-width:768px) {
+	 .board_modify #dataTable_filter {
+	   float: left;
+	   width: 312px;
+	   margin: 4px 0 0 4px;
+	   
+	}
+}
+/* 768px end */
+
+/* 너비가 560px 이하일 때 */
+@media screen and (max-width:560px) {
+	.board_modify .col-sm-12 #dataTable_filter {
+	 	display: inline;
+		 float: left;
+		 width: 150px;
+		 margin: 4px 0 0 4px;
+	   
+	}
+/* 너비가 560px 이하일 때 우측 사이드바를 없앰 */
+	.board_modify .col-sm-12 .boardtable {
+	  width:100%;
+	  text-align:center;
+	}
+}
+/* 560px end */
+
+
+
+.form-control {
+	display: inline-block;
+}
+
+

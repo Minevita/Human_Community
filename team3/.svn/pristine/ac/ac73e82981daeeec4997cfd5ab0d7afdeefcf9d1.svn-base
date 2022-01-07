@@ -1,0 +1,54 @@
+package site.awsomekingmoon.service;
+
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import lombok.AllArgsConstructor;
+import lombok.Setter;
+import site.awsomekingmoon.domain.MemberVo;
+import site.awsomekingmoon.mapper.MemberMapper;
+
+
+/**
+ * @author 박영준
+ *
+ */
+@Service
+@AllArgsConstructor
+public class MemberServiceImpl implements MemberService{
+	private MemberMapper memberMapper;
+	
+	@Override
+	public void register(Map<String, Object> map) {
+		memberMapper.insertMember(map);
+		memberMapper.insertAuth(map);
+	}
+	
+	@Override
+	public MemberVo get(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean modify(MemberVo memberVo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean withdraw(MemberVo memberVo) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
+	
+
+}

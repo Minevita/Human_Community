@@ -1,0 +1,41 @@
+package site.awsomekingmoon.service;
+
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+import site.awsomekingmoon.domain.Criteria;
+
+/**
+ * @author 김문수
+ * 2021.11.01 
+ * 회원 정보의 생성, 조회, 수정, 삭제 서비스 테스트 클래스 
+ */
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class MemberServiceTests {
+	@Autowired @Setter
+	private MemberService service;
+	
+	@Test
+	public void testExist() {
+		assertNotNull(service);
+	}
+	
+	@Test
+	public void testMemberList() {
+		service.memberList(new Criteria()).forEach(log::info);
+	}
+	
+	@Test
+	public void testMemberCount() {
+		log.info(service.memberCount(new Criteria()));
+	}
+}

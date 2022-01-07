@@ -1,0 +1,94 @@
+@charset "UTF-8";
+
+/* --------------- board list --------------- */
+.boardtable {
+  width:100%;
+  text-align:center;
+}
+div form div{
+  text-align:left;
+}
+.boardtable th { 
+	 height:28px; 
+	 border-top:2px solid #82C0E4; 
+	 background-color:#BADBEE; 
+	 border-bottom:2px solid #EAEAEA; 
+	 text-align:center;
+}
+
+.boardtable td, .table th {
+  padding:10px 20px;
+  border-top:1px solid #ccc;
+  word-break:break-all
+}
+
+.boardtable td:nth-child(2) {
+	text-align:left;
+}
+
+.boardtable--min {
+  min-width:700px;
+  cellspacing=0;
+  cellpadding=0; 
+  width=100%;
+  cellspacing=0;
+}
+
+.continer{
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	}
+	
+div .card{
+	width:80%;
+	text-align:center;
+}
+
+div .dataTables_length{
+	text-align:left;
+}
+
+
+/* 너비가 768px 이하일 때 */
+@media screen and (max-width:768px) {
+	 header #dataTable_filter {
+	   float: left;
+	   width: 312px;
+	   background: #fff;
+	   margin: 4px 0 0 4px;
+	   
+	}
+}
+
+/* 너비가 560px 이하일 때 */
+@media screen and (max-width:560px) {
+	header #dataTable_filter {
+	 	display: inline;
+		 float: left;
+		 width: 150px;
+		 background: #fff;
+		 margin: 4px 0 0 4px;
+	   
+	}
+/* 너비가 560px 이하일 때 우측 사이드바를 없앰 */
+.boardtable {
+  width:100%;
+  text-align:center;
+}
+}
+
+/* --------------- board paging --------------- */
+
+.paging{
+	width:100%;
+	position:relative;
+	margin-top:18px;
+	text-align:center;
+	line-height:20px
+	}
+.paging .dataTables_paginate{
+	display: inline-block;
+	}
+

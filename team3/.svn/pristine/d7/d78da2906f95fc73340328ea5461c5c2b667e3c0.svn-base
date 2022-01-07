@@ -1,0 +1,22 @@
+package site.awsomekingmoon.mapper;
+
+import java.util.Map;
+
+import site.awsomekingmoon.domain.MemberVo;
+
+/**
+ * @author 박영준
+ * MemberMapper
+ */
+public interface MemberMapper {
+	/** 회원 추가*/
+	void insertMember(Map<String, Object> map);
+	/** 회원 권한 부여 ROLE_USER ROLE_MEMBER ROLE_ADMIN*/
+	void insertAuth(Map<String, Object> map);
+	/** 회원정보 불러오기*/
+	MemberVo read(String id);
+	/** 핸드폰 인증번호*/
+	void insertAuthPhone(Map<String, Object> map);
+	/** 핸드폰 인증확인*/
+	int confirmAuth(Map<String, Object> map);
+}

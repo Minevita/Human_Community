@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.awsomekingmoon.mapper.UsedMKMapper">
+	<insert id="insert">
+	INSERT INTO USEDMK 
+	VALUES (#{bno}, #{status}, #{longitude}, #{latitude})
+	</insert>
+	
+	<update id="update">
+	UPDATE USEDMK SET
+	STATUS = #{status}
+	,LONGITUDE = #{longitude}
+	,LATITUDE = #{latitude}
+	WHERE BNO = #{bno}
+	</update>
+ 	
+	<delete id="delete">
+	DELETE USEDMK WHERE BNO = #{bno}
+	</delete>
+	
+	<select id="findByBno" resultType="usedMK">
+	SELECT * FROM USEDMK WHERE BNO = #{bno}
+	</select>
+</mapper>

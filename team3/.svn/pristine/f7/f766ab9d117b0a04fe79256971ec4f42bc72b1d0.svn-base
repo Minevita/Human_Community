@@ -1,0 +1,47 @@
+package site.awsomekingmoon.mapper;
+
+import java.util.List;
+import java.util.Map;
+
+import site.awsomekingmoon.domain.Criteria;
+import site.awsomekingmoon.domain.MemberVo;
+
+/**
+ * @author 박영준
+ * MemberMapper
+ */
+public interface MemberMapper {
+	/** 회원 추가*/
+	void insertMember(Map<String, Object> map);
+	/** 회원 권한 부여 ROLE_USER ROLE_MEMBER ROLE_ADMIN*/
+	void insertAuth(Map<String, Object> map);
+	/** 회원정보 불러오기*/
+	MemberVo read(String id);
+	/**
+	 * @author 김문수
+	 * admin용 멤버조회
+	 */
+	List<MemberVo> memberList();
+	/**
+	 * @author 김문수
+	 * admin용 멤버조회 with page
+	 */
+	List<MemberVo> memberListWithPaging(Criteria cri);
+	/**
+	 * @author 김문수
+	 * admin용 멤버 수 조회
+	 */
+	int getMemberCount(Criteria cri);
+	
+	
+	/** 핸드폰 인증번호*/
+	void insertAuthPhone(Map<String, Object> map);
+	/** 핸드폰 인증확인*/
+	int confirmAuth(Map<String, Object> map);
+	/** 회원정보 수정 */
+	int modify(Map<String, Object> map);
+	int modifyChild(Map<String, Object> map);
+	/** 회원정보 탈퇴 */
+	void withdraw(String id);
+	void withdrawAuth(String id);
+}

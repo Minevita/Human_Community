@@ -1,0 +1,33 @@
+package site.awsomekingmoon.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
+import site.awsomekingmoon.domain.Criteria;
+import site.awsomekingmoon.domain.PageDTO;
+import site.awsomekingmoon.service.BoardService;
+
+
+/**
+ * @author 박영준
+ * 로그인 화면 매핑
+ */
+@Controller @Log4j
+@AllArgsConstructor
+public class CommonController {
+	private BoardService service;
+	
+	@GetMapping("customLogin")
+	public String login(String error, String logout, Model model) {
+		log.info("error : " + error);
+		
+		if(error != null) {
+			model.addAttribute("error", "login error check your account");
+		}
+		return "/common/login";
+	}
+}

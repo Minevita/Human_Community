@@ -1,0 +1,81 @@
+package site.awsomekingmoon.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
+import site.awsomekingmoon.domain.UsedMKDTO;
+import site.awsomekingmoon.mapper.UsedMKMapper;
+/**
+ * @author 이창연
+ * 판매글 정보 컨트롤러 
+ */
+@Controller @Log4j
+public class UsedMKController {
+	@Setter @Autowired
+	private UsedMKMapper usedMKMapper;
+	
+	@PostMapping("uploadUMK")
+	public @ResponseBody List<UsedMKDTO> upload(UsedMKDTO mkdto) {
+		List<UsedMKDTO> list = new ArrayList<>();
+		UsedMKDTO dto = new UsedMKDTO(mkdto.getLongitude(), mkdto.getLatitude());
+		log.info(dto);
+		list.add(dto);
+		return list;
+	}
+	
+	
+//	@GetMapping("display")
+//	public ResponseEntity<byte[]> getFile(String fileName) throws IOException {
+//		log.info("fileName :: " + fileName);
+//		File file = new File(uploadFolder, fileName);
+//		log.info("file :: " + file);
+//		
+//		ResponseEntity<byte[]> ret = null;
+//		HttpHeaders headers = new HttpHeaders();
+//		headers.add("Content-Type", Files.probeContentType(file.toPath()));
+//		ret = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+//		return ret;
+//	}
+//	
+//	@GetMapping("download")
+//	public ResponseEntity<Resource> download(String fileName, @RequestHeader("User-Agent") String userAgent) throws IOException {
+//		Resource resource = new FileSystemResource(uploadFolder + "/" + fileName);
+//		if(!resource.exists()) {
+//			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//		}
+//		HttpHeaders headers = new HttpHeaders();
+//		fileName = fileName.substring(fileName.indexOf("/")+1);
+//		
+//		String resourceName = attachMapper.findBy(new AttachDTO(fileName).getUuid()).getOrigin();
+//		if(userAgent.toLowerCase().contains("trident")){	
+//			resourceName = URLEncoder.encode(resourceName,"utf-8").replaceAll("\\+", "%20");
+//		} 
+//		else {
+//			resourceName = new String(resourceName.getBytes("utf-8"),"iso-8859-1");
+//		}
+//		
+//		headers.add("Content-Type", "application/octet-stream");
+//		headers.add("Content-DisPosition", "attachment; filename="+ resourceName);
+//		
+//		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+//		
+//	}
+	
+	@PostMapping("deleteLocation")
+	public @ResponseBody void deleteLocation(Long bno) {
+		usedMKMapper.delete(bno);
+	}
+	
+//	private String getFolder() {
+//		return new SimpleDateFormat(
+//				String.format("yyyy%sMM%sdd", File.separator, File.separator)).format(new Date());
+//				"yyyy/MM/dd").format(new Date());
+//	}
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.awsomekingmoon.mapper.LectureMapper">
+	
+	<select id="getLecture" resultType="lecture">
+		SELECT LNO, TITLE, WRITER, CONTENT FROM LECTURE WHERE LNO > 0 ORDER BY LNO
+	</select>
+	
+	<select id="getLectureWithPaging" resultType="lecture">
+		SELECT LNO, TITLE, WRITER, REGDATE, PRICE
+		FROM
+		(
+		    SELECT
+		    /*+ INDEX_DESC(LECTURE PK_LECTURE)*/
+		    ROWNUM RN, LNO, WRITER, TITLE, CONTENT, REGDATE, PRICE
+		    FROM LECTURE
+		    WHERE LNO > 0
+		    AND ROWNUM &lt;= #{pageNum} * #{amount}
+		)
+		WHERE RN > (#{pageNum}-1) * #{amount}
+		ORDER BY LNO
+	</select>
+	
+	<insert id="insert">
+		INSERT INTO LECTURE(LNO, TITLE, CONTENT, WRITER, PRICE)
+		VALUES (SEQ_LECTURE.NEXTVAL, #{title}, #{content}, #{writer}, #{price})
+	</insert>
+	
+	<insert id="insertSelectKey">
+	 <selectKey order="BEFORE" keyProperty="lno" resultType="long">
+	 	SELECT SEQ_LECTURE.NEXTVAL FROM DUAL
+	 </selectKey>
+	 	INSERT INTO LECTURE(LNO, TITLE, CONTENT, WRITER, PRICE) 
+		VALUES (#{lno}, #{title}, #{content}, #{writer}, #{price})
+	</insert>
+	
+	<update id="update">
+		UPDATE LECTURE SET
+		TITLE = #{title}
+		,CONTENT = #{content}
+		,WRITER = #{writer}
+		,PRICE = #{price}
+		,REGDATE = SYSDATE
+		WHERE LNO = #{lno} 
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM LECTURE WHERE LNO = #{lno}
+	</delete>
+	
+	<select id="read" resultType="lecture">
+		SELECT * FROM LECTURE WHERE LNO = #{lno}
+	</select>
+	
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM LECTURE WHERE LNO > 0
+	</select>
+	
+</mapper>

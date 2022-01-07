@@ -1,0 +1,67 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="mdi mdi-view-quilt menu-icon"></i>
+            <span class="menu-title">로고</span>
+          </a>
+        </li>
+        <li class="nav-item sidebar-category">
+          <p>Menu</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pages/forms/basic_elements.html">
+            <i class="mdi mdi-view-headline menu-icon"></i>
+            <span class="menu-title">회원 관리</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <i class="mdi mdi-palette menu-icon"></i>
+            <span class="menu-title">게시판 관리</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="#">전체게시판</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">공지사항</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">Q & A</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">포럼</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">서적리뷰</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">자유게시판</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">IT News & 정보</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">Tip & 강좌</a></li>
+              <li class="nav-item"> <a class="nav-link" href="#">중고장터</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pages/charts/chartjs.html">
+            <i class="mdi mdi-chart-pie menu-icon"></i>
+            <span class="menu-title">학습메뉴</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="pages/tables/basic-table.html">
+            <i class="mdi mdi-grid-large menu-icon"></i>
+            <span class="menu-title">매출조회</span>
+          </a>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/tables/basic-table.html">
+              <i class="mdi mdi-grid-large menu-icon"></i>
+              <span class="menu-title">SMS</span>
+            </a>
+          </li>
+        </li>
+      </ul>
+    </nav>

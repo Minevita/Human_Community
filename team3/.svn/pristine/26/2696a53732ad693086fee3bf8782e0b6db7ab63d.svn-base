@@ -1,0 +1,34 @@
+package site.awsomekingmoon.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
+import site.awsomekingmoon.domain.Criteria;
+import site.awsomekingmoon.domain.PageDTO;
+import site.awsomekingmoon.service.BoardService;
+import site.awsomekingmoon.service.BoardServiceImpl;
+
+@Controller @Log4j
+@AllArgsConstructor
+public class AdminController {
+	private BoardService service;
+	
+
+	@GetMapping("adminPage")
+	public String adminLogin(Model model, Criteria cri){
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("page", new PageDTO(service.getTotal(cri), cri));
+		return "/adminPage";
+	}
+	
+	/**리스트*/
+	@GetMapping("memberList")
+	public void list(Model model, Criteria cri) {
+		log.info("memberList");
+		model.addAttribute("list", service.getList(cri));
+		model.addAttribute("page", new PageDTO(service.getTotal(cri), cri));
+	}
+}
+
